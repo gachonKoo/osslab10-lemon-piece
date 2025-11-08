@@ -1,9 +1,18 @@
-def get_divisors(number):
-    divisors = []  
-    for i in range(1, number + 1):  
-        if number % i == 0: 
-            divisors.append(i)
-    return divisors
+import sys
+import math
 
-num = int(input("약수를 구할 숫자를 입력하세요: "))
-print(f"{num}의 약수: {get_divisors(num)}")
+def divisors(n: int):
+    small, large = [], []
+    limit = int(math.isqrt(n))
+    for d in range(1, limit + 1):
+        if n % d == 0:
+            small.append(d)
+            if d != n // d:
+                large.append(n // d)
+    return small + large[::-1]  
+def main():
+    n = int(sys.argv[1]) 
+    print(" ".join(map(str, divisors(n))))
+
+if __name__ == "__main__":
+    main()
